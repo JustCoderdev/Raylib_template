@@ -1,0 +1,9 @@
+lib/sources/*
+bin/
+
+.old_session.vim
+.session.vim
+
+.ldcache
+ldcache
+
