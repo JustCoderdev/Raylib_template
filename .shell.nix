@@ -32,6 +32,7 @@ pkgs.mkShell {
 	shellHook = ''
 export PATH+=":${pkgs.arduino}/share/arduino/hardware/arduino/tools/avr/bin"
 export LD_LIBRARY_PATH+=":$(pwd)/lib/raylib"
+export LD_LIBRARY_PATH+=":$(pwd)/lib/"
 rm -f .ldcache
 ldconfig -C .ldcache
 

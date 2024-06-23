@@ -681,125 +681,125 @@ typedef enum {
 	LOG_NONE     /*  Disable logging */
 } TraceLogLevel;
 
-/* /1*  Keyboard keys (US keyboard layout) *1/ */
-/* /1*  NOTE: Use GetKeyPressed() to allow redefining *1/ */
-/* /1*  required keys for alternative layouts *1/ */
-/* typedef enum { */
-/* 	KEY_NULL = 0, /1*  Key: NULL, used for no key pressed *1/ */
-/* 	/1*  Alphanumeric keys *1/ */
-/* 	KEY_APOSTROPHE = 39,	/1*  Key: ' *1/ */
-/* 	KEY_COMMA = 44,			/1*  Key: , *1/ */
-/* 	KEY_MINUS = 45,			/1*  Key: - *1/ */
-/* 	KEY_PERIOD = 46,		/1*  Key: . *1/ */
-/* 	KEY_SLASH = 47,			/1*  Key: / *1/ */
-/* 	KEY_ZERO = 48,			/1*  Key: 0 *1/ */
-/* 	KEY_ONE = 49,			/1*  Key: 1 *1/ */
-/* 	KEY_TWO = 50,			/1*  Key: 2 *1/ */
-/* 	KEY_THREE = 51,			/1*  Key: 3 *1/ */
-/* 	KEY_FOUR = 52,			/1*  Key: 4 *1/ */
-/* 	KEY_FIVE = 53,			/1*  Key: 5 *1/ */
-/* 	KEY_SIX = 54,			/1*  Key: 6 *1/ */
-/* 	KEY_SEVEN = 55,			/1*  Key: 7 *1/ */
-/* 	KEY_EIGHT = 56,			/1*  Key: 8 *1/ */
-/* 	KEY_NINE = 57,			/1*  Key: 9 *1/ */
-/* 	KEY_SEMICOLON = 59,		/1*  Key: ; *1/ */
-/* 	KEY_EQUAL = 61,			/1*  Key: = *1/ */
-/* 	KEY_A = 65,				/1*  Key: A | a *1/ */
-/* 	KEY_B = 66,				/1*  Key: B | b *1/ */
-/* 	KEY_C = 67,				/1*  Key: C | c *1/ */
-/* 	KEY_D = 68,				/1*  Key: D | d *1/ */
-/* 	KEY_E = 69,				/1*  Key: E | e *1/ */
-/* 	KEY_F = 70,				/1*  Key: F | f *1/ */
-/* 	KEY_G = 71,				/1*  Key: G | g *1/ */
-/* 	KEY_H = 72,				/1*  Key: H | h *1/ */
-/* 	KEY_I = 73,				/1*  Key: I | i *1/ */
-/* 	KEY_J = 74,				/1*  Key: J | j *1/ */
-/* 	KEY_K = 75,				/1*  Key: K | k *1/ */
-/* 	KEY_L = 76,				/1*  Key: L | l *1/ */
-/* 	KEY_M = 77,				/1*  Key: M | m *1/ */
-/* 	KEY_N = 78,				/1*  Key: N | n *1/ */
-/* 	KEY_O = 79,				/1*  Key: O | o *1/ */
-/* 	KEY_P = 80,				/1*  Key: P | p *1/ */
-/* 	KEY_Q = 81,				/1*  Key: Q | q *1/ */
-/* 	KEY_R = 82,				/1*  Key: R | r *1/ */
-/* 	KEY_S = 83,				/1*  Key: S | s *1/ */
-/* 	KEY_T = 84,				/1*  Key: T | t *1/ */
-/* 	KEY_U = 85,				/1*  Key: U | u *1/ */
-/* 	KEY_V = 86,				/1*  Key: V | v *1/ */
-/* 	KEY_W = 87,				/1*  Key: W | w *1/ */
-/* 	KEY_X = 88,				/1*  Key: X | x *1/ */
-/* 	KEY_Y = 89,				/1*  Key: Y | y *1/ */
-/* 	KEY_Z = 90,				/1*  Key: Z | z *1/ */
-/* 	KEY_LEFT_BRACKET = 91,	/1*  Key: [ *1/ */
-/* 	KEY_BACKSLASH = 92,		/1*  Key: '\' *1/ */
-/* 	KEY_RIGHT_BRACKET = 93, /1*  Key: ] *1/ */
-/* 	KEY_GRAVE = 96,			/1*  Key: ` *1/ */
-/* 	/1*  Function keys *1/ */
-/* 	KEY_SPACE = 32,			 /1*  Key: Space *1/ */
-/* 	KEY_ESCAPE = 256,		 /1*  Key: Esc *1/ */
-/* 	KEY_ENTER = 257,		 /1*  Key: Enter *1/ */
-/* 	KEY_TAB = 258,			 /1*  Key: Tab *1/ */
-/* 	KEY_BACKSPACE = 259,	 /1*  Key: Backspace *1/ */
-/* 	KEY_INSERT = 260,		 /1*  Key: Ins *1/ */
-/* 	KEY_DELETE = 261,		 /1*  Key: Del *1/ */
-/* 	KEY_RIGHT = 262,		 /1*  Key: Cursor right *1/ */
-/* 	KEY_LEFT = 263,			 /1*  Key: Cursor left *1/ */
-/* 	KEY_DOWN = 264,			 /1*  Key: Cursor down *1/ */
-/* 	KEY_UP = 265,			 /1*  Key: Cursor up *1/ */
-/* 	KEY_PAGE_UP = 266,		 /1*  Key: Page up *1/ */
-/* 	KEY_PAGE_DOWN = 267,	 /1*  Key: Page down *1/ */
-/* 	KEY_HOME = 268,			 /1*  Key: Home *1/ */
-/* 	KEY_END = 269,			 /1*  Key: End *1/ */
-/* 	KEY_CAPS_LOCK = 280,	 /1*  Key: Caps lock *1/ */
-/* 	KEY_SCROLL_LOCK = 281,	 /1*  Key: Scroll down *1/ */
-/* 	KEY_NUM_LOCK = 282,		 /1*  Key: Num lock *1/ */
-/* 	KEY_PRINT_SCREEN = 283,	 /1*  Key: Print screen *1/ */
-/* 	KEY_PAUSE = 284,		 /1*  Key: Pause *1/ */
-/* 	KEY_F1 = 290,			 /1*  Key: F1 *1/ */
-/* 	KEY_F2 = 291,			 /1*  Key: F2 *1/ */
-/* 	KEY_F3 = 292,			 /1*  Key: F3 *1/ */
-/* 	KEY_F4 = 293,			 /1*  Key: F4 *1/ */
-/* 	KEY_F5 = 294,			 /1*  Key: F5 *1/ */
-/* 	KEY_F6 = 295,			 /1*  Key: F6 *1/ */
-/* 	KEY_F7 = 296,			 /1*  Key: F7 *1/ */
-/* 	KEY_F8 = 297,			 /1*  Key: F8 *1/ */
-/* 	KEY_F9 = 298,			 /1*  Key: F9 *1/ */
-/* 	KEY_F10 = 299,			 /1*  Key: F10 *1/ */
-/* 	KEY_F11 = 300,			 /1*  Key: F11 *1/ */
-/* 	KEY_F12 = 301,			 /1*  Key: F12 *1/ */
-/* 	KEY_LEFT_SHIFT = 340,	 /1*  Key: Shift left *1/ */
-/* 	KEY_LEFT_CONTROL = 341,	 /1*  Key: Control left *1/ */
-/* 	KEY_LEFT_ALT = 342,		 /1*  Key: Alt left *1/ */
-/* 	KEY_LEFT_SUPER = 343,	 /1*  Key: Super left *1/ */
-/* 	KEY_RIGHT_SHIFT = 344,	 /1*  Key: Shift right *1/ */
-/* 	KEY_RIGHT_CONTROL = 345, /1*  Key: Control right *1/ */
-/* 	KEY_RIGHT_ALT = 346,	 /1*  Key: Alt right *1/ */
-/* 	KEY_RIGHT_SUPER = 347,	 /1*  Key: Super right *1/ */
-/* 	KEY_KB_MENU = 348,		 /1*  Key: KB menu *1/ */
-/* 	/1*  Keypad keys *1/ */
-/* 	KEY_KP_0 = 320,		   /1*  Key: Keypad 0 *1/ */
-/* 	KEY_KP_1 = 321,		   /1*  Key: Keypad 1 *1/ */
-/* 	KEY_KP_2 = 322,		   /1*  Key: Keypad 2 *1/ */
-/* 	KEY_KP_3 = 323,		   /1*  Key: Keypad 3 *1/ */
-/* 	KEY_KP_4 = 324,		   /1*  Key: Keypad 4 *1/ */
-/* 	KEY_KP_5 = 325,		   /1*  Key: Keypad 5 *1/ */
-/* 	KEY_KP_6 = 326,		   /1*  Key: Keypad 6 *1/ */
-/* 	KEY_KP_7 = 327,		   /1*  Key: Keypad 7 *1/ */
-/* 	KEY_KP_8 = 328,		   /1*  Key: Keypad 8 *1/ */
-/* 	KEY_KP_9 = 329,		   /1*  Key: Keypad 9 *1/ */
-/* 	KEY_KP_DECIMAL = 330,  /1*  Key: Keypad . *1/ */
-/* 	KEY_KP_DIVIDE = 331,   /1*  Key: Keypad / *1/ */
-/* 	KEY_KP_MULTIPLY = 332, /1*  Key: Keypad * *1/ */
-/* 	KEY_KP_SUBTRACT = 333, /1*  Key: Keypad - *1/ */
-/* 	KEY_KP_ADD = 334,	   /1*  Key: Keypad + *1/ */
-/* 	KEY_KP_ENTER = 335,	   /1*  Key: Keypad Enter *1/ */
-/* 	KEY_KP_EQUAL = 336,	   /1*  Key: Keypad = *1/ */
-/* 	/1*  Android key buttons *1/ */
-/* 	KEY_BACK = 4,		 /1*  Key: Android back button *1/ */
-/* 	KEY_MENU = 5,		 /1*  Key: Android menu button *1/ */
-/* 	KEY_VOLUME_UP = 24,	 /1*  Key: Android volume up button *1/ */
-/* 	KEY_VOLUME_DOWN = 25 /1*  Key: Android volume down button *1/ */
-/* } KeyboardKey; */
+/*  Keyboard keys (US keyboard layout) */
+/*  NOTE: Use GetKeyPressed() to allow redefining */
+/*  required keys for alternative layouts */
+typedef enum {
+	KEY_NULL = 0, /*  Key: NULL, used for no key pressed */
+	/*  Alphanumeric keys */
+	KEY_APOSTROPHE = 39,	/*  Key: ' */
+	KEY_COMMA = 44,			/*  Key: , */
+	KEY_MINUS = 45,			/*  Key: - */
+	KEY_PERIOD = 46,		/*  Key: . */
+	KEY_SLASH = 47,			/*  Key: / */
+	KEY_ZERO = 48,			/*  Key: 0 */
+	KEY_ONE = 49,			/*  Key: 1 */
+	KEY_TWO = 50,			/*  Key: 2 */
+	KEY_THREE = 51,			/*  Key: 3 */
+	KEY_FOUR = 52,			/*  Key: 4 */
+	KEY_FIVE = 53,			/*  Key: 5 */
+	KEY_SIX = 54,			/*  Key: 6 */
+	KEY_SEVEN = 55,			/*  Key: 7 */
+	KEY_EIGHT = 56,			/*  Key: 8 */
+	KEY_NINE = 57,			/*  Key: 9 */
+	KEY_SEMICOLON = 59,		/*  Key: ; */
+	KEY_EQUAL = 61,			/*  Key: = */
+	KEY_A = 65,				/*  Key: A | a */
+	KEY_B = 66,				/*  Key: B | b */
+	KEY_C = 67,				/*  Key: C | c */
+	KEY_D = 68,				/*  Key: D | d */
+	KEY_E = 69,				/*  Key: E | e */
+	KEY_F = 70,				/*  Key: F | f */
+	KEY_G = 71,				/*  Key: G | g */
+	KEY_H = 72,				/*  Key: H | h */
+	KEY_I = 73,				/*  Key: I | i */
+	KEY_J = 74,				/*  Key: J | j */
+	KEY_K = 75,				/*  Key: K | k */
+	KEY_L = 76,				/*  Key: L | l */
+	KEY_M = 77,				/*  Key: M | m */
+	KEY_N = 78,				/*  Key: N | n */
+	KEY_O = 79,				/*  Key: O | o */
+	KEY_P = 80,				/*  Key: P | p */
+	KEY_Q = 81,				/*  Key: Q | q */
+	KEY_R = 82,				/*  Key: R | r */
+	KEY_S = 83,				/*  Key: S | s */
+	KEY_T = 84,				/*  Key: T | t */
+	KEY_U = 85,				/*  Key: U | u */
+	KEY_V = 86,				/*  Key: V | v */
+	KEY_W = 87,				/*  Key: W | w */
+	KEY_X = 88,				/*  Key: X | x */
+	KEY_Y = 89,				/*  Key: Y | y */
+	KEY_Z = 90,				/*  Key: Z | z */
+	KEY_LEFT_BRACKET = 91,	/*  Key: [ */
+	KEY_BACKSLASH = 92,		/*  Key: '\' */
+	KEY_RIGHT_BRACKET = 93, /*  Key: ] */
+	KEY_GRAVE = 96,			/*  Key: ` */
+	/*  Function keys */
+	KEY_SPACE = 32,			 /*  Key: Space */
+	KEY_ESCAPE = 256,		 /*  Key: Esc */
+	KEY_ENTER = 257,		 /*  Key: Enter */
+	KEY_TAB = 258,			 /*  Key: Tab */
+	KEY_BACKSPACE = 259,	 /*  Key: Backspace */
+	KEY_INSERT = 260,		 /*  Key: Ins */
+	KEY_DELETE = 261,		 /*  Key: Del */
+	KEY_RIGHT = 262,		 /*  Key: Cursor right */
+	KEY_LEFT = 263,			 /*  Key: Cursor left */
+	KEY_DOWN = 264,			 /*  Key: Cursor down */
+	KEY_UP = 265,			 /*  Key: Cursor up */
+	KEY_PAGE_UP = 266,		 /*  Key: Page up */
+	KEY_PAGE_DOWN = 267,	 /*  Key: Page down */
+	KEY_HOME = 268,			 /*  Key: Home */
+	KEY_END = 269,			 /*  Key: End */
+	KEY_CAPS_LOCK = 280,	 /*  Key: Caps lock */
+	KEY_SCROLL_LOCK = 281,	 /*  Key: Scroll down */
+	KEY_NUM_LOCK = 282,		 /*  Key: Num lock */
+	KEY_PRINT_SCREEN = 283,	 /*  Key: Print screen */
+	KEY_PAUSE = 284,		 /*  Key: Pause */
+	KEY_F1 = 290,			 /*  Key: F1 */
+	KEY_F2 = 291,			 /*  Key: F2 */
+	KEY_F3 = 292,			 /*  Key: F3 */
+	KEY_F4 = 293,			 /*  Key: F4 */
+	KEY_F5 = 294,			 /*  Key: F5 */
+	KEY_F6 = 295,			 /*  Key: F6 */
+	KEY_F7 = 296,			 /*  Key: F7 */
+	KEY_F8 = 297,			 /*  Key: F8 */
+	KEY_F9 = 298,			 /*  Key: F9 */
+	KEY_F10 = 299,			 /*  Key: F10 */
+	KEY_F11 = 300,			 /*  Key: F11 */
+	KEY_F12 = 301,			 /*  Key: F12 */
+	KEY_LEFT_SHIFT = 340,	 /*  Key: Shift left */
+	KEY_LEFT_CONTROL = 341,	 /*  Key: Control left */
+	KEY_LEFT_ALT = 342,		 /*  Key: Alt left */
+	KEY_LEFT_SUPER = 343,	 /*  Key: Super left */
+	KEY_RIGHT_SHIFT = 344,	 /*  Key: Shift right */
+	KEY_RIGHT_CONTROL = 345, /*  Key: Control right */
+	KEY_RIGHT_ALT = 346,	 /*  Key: Alt right */
+	KEY_RIGHT_SUPER = 347,	 /*  Key: Super right */
+	KEY_KB_MENU = 348,		 /*  Key: KB menu */
+	/*  Keypad keys */
+	KEY_KP_0 = 320,		   /*  Key: Keypad 0 */
+	KEY_KP_1 = 321,		   /*  Key: Keypad 1 */
+	KEY_KP_2 = 322,		   /*  Key: Keypad 2 */
+	KEY_KP_3 = 323,		   /*  Key: Keypad 3 */
+	KEY_KP_4 = 324,		   /*  Key: Keypad 4 */
+	KEY_KP_5 = 325,		   /*  Key: Keypad 5 */
+	KEY_KP_6 = 326,		   /*  Key: Keypad 6 */
+	KEY_KP_7 = 327,		   /*  Key: Keypad 7 */
+	KEY_KP_8 = 328,		   /*  Key: Keypad 8 */
+	KEY_KP_9 = 329,		   /*  Key: Keypad 9 */
+	KEY_KP_DECIMAL = 330,  /*  Key: Keypad . */
+	KEY_KP_DIVIDE = 331,   /*  Key: Keypad / */
+	KEY_KP_MULTIPLY = 332, /*  Key: Keypad * */
+	KEY_KP_SUBTRACT = 333, /*  Key: Keypad - */
+	KEY_KP_ADD = 334,	   /*  Key: Keypad + */
+	KEY_KP_ENTER = 335,	   /*  Key: Keypad Enter */
+	KEY_KP_EQUAL = 336,	   /*  Key: Keypad = */
+	/*  Android key buttons */
+	KEY_BACK = 4,		 /*  Key: Android back button */
+	KEY_MENU = 5,		 /*  Key: Android menu button */
+	KEY_VOLUME_UP = 24,	 /*  Key: Android volume up button */
+	KEY_VOLUME_DOWN = 25 /*  Key: Android volume down button */
+} KeyboardKey;
 
 /*  Add backwards compatibility support for deprecated names */
 #define MOUSE_LEFT_BUTTON   MOUSE_BUTTON_LEFT
