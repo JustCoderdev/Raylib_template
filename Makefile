@@ -1,10 +1,10 @@
 # General Makefile for C projects #2
 
-PROGRAM_NAME = arduino
+PROGRAM_NAME = graphicsthing
 
 # SRC_FILES = test.c
 # $(wildcard *.c)
-SRC_FILES = main.c
+SRC_FILES = main.c hotreload.c
 OBJ_FILES = $(patsubst %.c,%.o,${SRC_FILES})
 
 # Raylib doesn't like clang, use gcc instead!
@@ -18,20 +18,21 @@ IFLAGS = -I. -I./lib/include
 # -I./lib/Adafruit_BusIO -I./lib/MCUFRIEND_kbv \
 # -I./lib/MCUFRIEND_kbv/extras/unused/ -I./lib/Adafruit_GFX_Library
 
-LDFLAGS = -lGL -lm -lpthread -ldl -lX11 \
-		-Wl,-rpath=./lib/raylib/ -L./lib/raylib -lraylib \
- 		-Wl,-rpath=./lib/ -L./lib/ -lhotreload
+LDFLAGS = -Wl,-rpath=./lib/ -L./lib/
+# -lhotfile
+RAYFLAGS = -lGL -lm -lpthread -ldl -lX11 \
+          -Wl,-rpath=./lib/raylib/ -L./lib/raylib -lraylib
 # -lXrandr -lXinerama -lXi -lXcursor
 
 DFLAGS = -DEMULATION_ENABLE=1 -DDEBUG_ENABLE=1
 
-FLAGS = $(CCFLAGS) $(IFLAGS) $(LDFLAGS) $(DFLAGS)
+FLAGS = $(CCFLAGS) $(IFLAGS) $(LDFLAGS) $(RAYFLAGS) $(DFLAGS)
 
 
 local: build_so build run
 build_so:
 	@echo "Compiling... (auto)"
-	$(CC) $(CCFLAGS) -fPIC -shared hotreload.c -o lib/libhotreload.so
+	$(CC) $(CCFLAGS) $(IFLAGS) $(RAYFLAGS) $(DFLAGS) -fPIC -shared hotfile.c -o lib/libhotfile.so
 
 build:
 	@echo "Compiling... "

@@ -1,13 +1,78 @@
+#include <string.h>
 #include <stdio.h>
+#include <dlfcn.h>
+#include <assert.h>
 
-void setup(void) {
-	printf("Loaded moduleA\n");
+#include "hotdraw.h"
+
+#define DL_PATH_LEN 50
+char dl_path[DL_PATH_LEN];
+void* dl_handle = NULL;
+
+void (*HGL_init_fn)(HGL_State* state) = NULL;
+void (*HGL_tick_fn)(HGL_State* state) = NULL;
+void (*HGL_stop_fn)(HGL_State* state) = NULL;
+
+error HGL_load(char* path) {
+	assert(dl_handle == NULL && "Can't load the plugin without closing the old one!");
+
+	strncpy(dl_path, path, (DL_PATH_LEN - 1));
+	char* error = NULL;
+
+
+	/* LOAD DLL */
+	dl_handle = dlopen(dl_path, RTLD_NOW);
+	if(dl_handle == NULL) {
+		printf("\033[35mFailed to load dl\033[0m: %s\n", dlerror());
+		return failure;
+	}
+
+
+	/* LOAD SYMBOLS */
+	HGL_init_fn = dlsym(dl_handle, "init_fn");
+	if((error = dlerror())) goto symbol_error;
+
+	HGL_tick_fn = dlsym(dl_handle, "tick_fn");
+	if((error = dlerror())) goto symbol_error;
+
+	HGL_stop_fn = dlsym(dl_handle, "stop_fn");
+	if((error = dlerror())) goto symbol_error;
+
+
+	printf("\033[34mLoaded DL successfully\033[0m\n");
+	return success;
+
+
+symbol_error:
+	printf("\033[35mFailed to load symbol setup\033[0m: %s\n", error);
+	return failure;
 }
 
-void loop(void) {
-	static int state = 0;
-	/* char* chars = "|/-\\"; */
-	char* chars = "aAbBcC";
-	printf("\r%c", chars[state++ % 4]);
-	fflush(stdout);
+error HGL_reload() {
+	n64 state_size = sizeof(HGL_State);
+
+	if(HGL_unload()) return failure;
+	if(HGL_load(dl_path)) return failure;
+
+	if(sizeof(HGL_State) != state_size) {
+		printf("\033[31mState size mismatch! (%lu) != (%lu)", state_size, sizeof(HGL_State));
+	}
+
+	return success;
+}
+
+error HGL_unload() {
+	HGL_init_fn = NULL;
+	HGL_tick_fn = NULL;
+	HGL_stop_fn = NULL;
+
+	if(dlclose(dl_handle)) {
+		printf("\033[35mFailed to unload DL\033[0m: %s\n", dlerror());
+		return failure;
+	}
+
+	dl_handle = NULL;
+
+	printf("\033[36mUnloaded DL Successfully\033[0m\n");
+	return success;
 }
